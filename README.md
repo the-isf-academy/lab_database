@@ -1,1 +1,3 @@
-Data from this [repo](https://github.com/JoaoTMDias/1001-albums-you-must-hear-before-you-die-scrapper/blob/master/data.json) 
+# Lab Database
+
+Data from this [repo](https://github.com/Code-Institute-Submissions/riddle-1/blob/master/riddles.json) 
