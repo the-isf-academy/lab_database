@@ -1,3 +1,7 @@
+# this file has helper functions 
+# each function connects to the database
+# and runs sql commands
+
 import sqlite3
 
 def get_all_riddles():
@@ -29,22 +33,6 @@ def increment_row_value(column, id):
     conn.commit()
     conn.close()
 
-def get_random_riddles(num_riddles):
-    conn = sqlite3.connect('database.db') # connect to database
-    conn.row_factory = sqlite3.Row  #converts row to dictionary object
-
-    ranodm_riddles = conn.execute(
-            f"""
-            SELECT *
-            from riddles
-            ORDER BY random()
-            limit {num_riddles}"""
-        ).fetchall() 
-    
-    conn.close()
-
-    return ranodm_riddles
-
 
 if __name__=="__main__":
     # -- testing helper SQL functions
@@ -52,5 +40,8 @@ if __name__=="__main__":
     all_riddles = get_all_riddles()
     for riddle in all_riddles:
         print(riddle['id'], riddle['question'])
+
+
+    increment_row_value('total_guesses', id)
 
     

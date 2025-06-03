@@ -1,3 +1,6 @@
+# this function creates the database file 
+# and inserts 100 riddles
+
 import sqlite3
 import json
 
