@@ -19,29 +19,50 @@ def get_all_riddles():
 
     return all_riddles
 
-def increment_row_value(column, id):
+def increment_riddle_column(column, id):
     conn = sqlite3.connect('database.db') # connect to database
     conn.row_factory = sqlite3.Row  #converts row to dictionary object
 
     conn.execute(
-            f"""
-            UPDATE songs 
-            SET {column} = {column} + 1 
-            WHERE id = {id}"""
-        )
-    
+        f"""UPDATE riddles 
+        SET {column} = {column} + 1 
+        WHERE id = ?""",(id,)
+    )
+
     conn.commit()
     conn.close()
 
+def get_random_riddle(num): 
+    conn = sqlite3.connect('database.db') # connect to database
+    conn.row_factory = sqlite3.Row  #converts row to dictionary object
+
+    random_riddles = conn.execute(
+       f"""
+        SELECT *
+        from riddles
+        ORDER BY random()
+        limit ?""",(num,)
+    ).fetchall()
+
+ 
+    conn.commit()
+    conn.close()
+
+    return random_riddles
 
 if __name__=="__main__":
-    # -- testing helper SQL functions
+    # -- run python helpers.py to test your helper functions
+    # use comments to test section by section 
 
+    # gets all Riddles from db and prints each ID and question
     all_riddles = get_all_riddles()
     for riddle in all_riddles:
         print(riddle['id'], riddle['question'])
 
+    # # increments the total_guesses for Riddle #3
+    increment_row_value('total_guesses', 3)
 
-    increment_row_value('total_guesses', id)
-
+    random_riddles = get_random_riddle(5)
+    for riddle in random_riddles:
+        print(riddle['id'])
     
