@@ -42,7 +42,7 @@ if __name__=="__main__":
         print(riddle['id'], riddle['question'])
 
     # increments the total_guesses for Riddle #3 (experiment with changing the number)
-    increment_row_value('total_guesses', 3)
+    increment_riddle_column('total_guesses', 3)
 
 
     
