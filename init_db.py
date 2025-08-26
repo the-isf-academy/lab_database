@@ -3,6 +3,7 @@
 
 import sqlite3
 import json
+import random
 
 # connect to database
 connection = sqlite3.connect('database.db')
@@ -20,12 +21,14 @@ with open('riddles.json', 'r') as file:
     riddles = json.load(file)
     
 for riddle in riddles:
+    total_guesses = random.randint(10,50)
+    correct_guesses = random.randint(0,total_guesses)
     conn.execute(
         """
-        INSERT INTO riddles (question, answer)
-        VALUES (?, ?)
+        INSERT INTO riddles (question, answer, total_guesses, correct_guesses)
+        VALUES (?, ?, ?, ?)
         """,
-        (riddle['question'], riddle['answer'])
+        (riddle['question'], riddle['answer'], total_guesses, correct_guesses)
     )
 
 # save new questions to database
