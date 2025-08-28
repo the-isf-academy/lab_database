@@ -1,4 +1,5 @@
 # this file should run a riddle guessing game and update the database accordingly
+# TODO: finish the game 
 
 from helpers import *
 
