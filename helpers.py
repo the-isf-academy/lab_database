@@ -31,6 +31,8 @@ def increment_riddle_column(column, id):
     conn.commit()
     conn.close()
 
+# TODO: write get_random_riddles(num)  
+
 
 if __name__=="__main__":
     # -- run python helpers.py to test your helper functions
@@ -43,6 +45,9 @@ if __name__=="__main__":
 
     # increments the total_guesses for Riddle #3 (experiment with changing the number)
     increment_riddle_column('total_guesses', 3)
+
+
+    # TODO: test get_random_riddles(num) function 
 
 
     
